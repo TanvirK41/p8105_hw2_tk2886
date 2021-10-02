@@ -7,6 +7,15 @@ output: github_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(readxl)
 ```
 
+## Problem 1 
+### Importing Mr.Trash Wheel Data (Excel File)
+
+```{r importing data}
+
+```
 
