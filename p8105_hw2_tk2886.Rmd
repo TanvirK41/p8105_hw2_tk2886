@@ -32,8 +32,10 @@ trashwheel_data
 ```{r cleaning data}
 trashwheel_data <-
   trashwheel_data %>%
-  janitor::clean_names()
+  janitor::clean_names() %>%
+  filter(!is.na(dumpster))
   
 trashwheel_data
+view(trashwheel_data)
 ```
 
