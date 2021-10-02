@@ -109,6 +109,8 @@ pol_data <-
                                prez_gop == 1 ~ "gop",
                                prez_gop == 2 ~ "gop")) %>%
   select(year, month, president, everything(), -day, -prez_dem, -prez_gop)
+
+pol_data
 ```
 
 
@@ -119,10 +121,28 @@ stockmark_data <-
   janitor::clean_names() %>%
   separate("date", into = c("month", "day", "year")) %>%
   mutate(month = as.integer(month)) %>%
-  mutate(month = month.name[month]) 
+  mutate(month = month.name[month]) %>%
+  select(year, month, everything())
 
-stockmark_data 
-view(stockmark_data)
+stockmark_data
+```
+
+
+### Importing and cleaning the unemployment Data.
+```{r}
+unemploy_data <-
+  unemploy_data <-
+  read_csv("./fivethirtyeight_datasets/unemployment.csv") %>%
+  janitor::clean_names() %>%
+  pivot_longer(
+    jan:dec,
+    names_to = "month",
+    values_to = "percentage"
+  ) %>%
+  
+  
+
+unemploy_data
 ```
 
 
