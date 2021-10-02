@@ -12,7 +12,7 @@ library(tidyverse)
 library(readxl)
 ```
 
-## Problem 1 
+# Problem 1 
 
 ### Importing Mr.Trash Wheel Data. Mr.Trash Wheel is an Excel File. 
 ```{r importing data with specific requirements}
@@ -31,7 +31,7 @@ trashwheel_data <-
     janitor::clean_names() 
 ```
 
-#### Using filter, mutate, as.integer to get specific data from Mr.Trash Wheel data
+### Using filter, mutate, as.integer to get specific data from Mr.Trash Wheel data
 ```{r getting specific data from Mr.Trash Wheel data by using filter, mutate, as.integer}
 trashwheel_data <-
   trashwheel_data %>%
@@ -51,13 +51,13 @@ precipitation18_data <-
 ```
 
 
-#### Cleaning 2018 Precipitation Data.
+### Cleaning 2018 Precipitation Data.
 ```{r cleaning 2018 precipitation data}
 precipitation18_data <-
   precipitation18_data %>%
   janitor::clean_names() %>%
   mutate(year = "2018") %>%
-  replace_na(list(month = "Total")) %>%
+  #replace_na(list(month = "Total")) %>%
   drop_na()
 ```
 
@@ -72,15 +72,21 @@ precipitation19_data <-
 
 ```
 
-#### Cleaning 2019 Precipitation Data.
+### Cleaning 2019 Precipitation Data.
 ```{r cleaning 2019 precipitation data}
 precipitation19_data <-
   precipitation19_data %>%
   janitor::clean_names() %>%
   mutate(year = "2019") %>%
-  replace_na(list(month = "Total")) %>%
+  #replace_na(list(month = "Total")) %>%
   drop_na()
 ```
 
 
+### Combining 2018 and 2019 Precipitation Data
+```{r combining data}
+precipitation_data <-
+  bind_rows(precipitation18_data, precipitation19_data) %>%
+  mutate(month = month.name[month])
+```
 
