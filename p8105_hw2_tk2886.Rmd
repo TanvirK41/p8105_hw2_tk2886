@@ -13,10 +13,25 @@ library(readxl)
 ```
 
 ## Problem 1 
+
 ### Importing Mr.Trash Wheel Data (Excel File)
 
 ```{r importing data}
-trashwheel_data = read_excel("./data/Trash-Wheel-Collection-Totals-8-6-19.xlsx", 
-                             n_max = 20)
+trashwheel_data <- 
+  read_excel(
+    "./data/Trash-Wheel-Collection-Totals-8-6-19.xlsx",
+    n_max = 20)
+
+trashwheel_data
+```
+
+### Cleaning Mr.Trash Wheel Data
+
+```{r cleaning data}
+trashwheel_data <-
+  trashwheel_data %>%
+  janitor::clean_names()
+  
+trashwheel_data
 ```
 
