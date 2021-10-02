@@ -15,7 +15,6 @@ library(readxl)
 ## Problem 1 
 
 ### Importing Mr.Trash Wheel Data. Mr.Trash Wheel is an Excel File. 
-
 ```{r importing data with specific requirements}
 trashwheel_data <- 
   read_excel(
@@ -23,12 +22,9 @@ trashwheel_data <-
     sheet = "Mr. Trash Wheel",
     range = "A2:N408",
     n_max = 20)
-
-trashwheel_data
 ```
 
 ### Cleaning Mr.Trash Wheel Data
-
 ```{r cleaning data}
 trashwheel_data <-
     trashwheel_data %>%
@@ -44,10 +40,47 @@ trashwheel_data <-
 ```
 
 
-### Cleaning 2018 Precipitation Data
+### Importing 2018 Precipitation Data. 2018 Precipitation is an Excel File. 
+```{r importing 2018 Precipitation data with specific requirements}
+precipitation18_data <-
+  read_excel(
+    "./data/Trash-Wheel-Collection-Totals-8-6-19.xlsx",
+    sheet = "2018 Precipitation",
+    range = "A2:B15",
+    n_max = 20)
+```
 
-```{r cleaning data pt2}
+
+#### Cleaning 2018 Precipitation Data.
+```{r cleaning 2018 precipitation data}
+precipitation18_data <-
+  precipitation18_data %>%
+  janitor::clean_names() %>%
+  mutate(year = "2018") %>%
+  replace_na(list(month = "Total")) %>%
+  drop_na()
+```
+
+### Importing 2019 Precipitation Data. 2019 Precipitation is an Excel File, 
+```{r importing 2019 Precipitation data with specific requirements}
+precipitation19_data <-
+  read_excel(
+    "./data/Trash-Wheel-Collection-Totals-8-6-19.xlsx",
+    sheet = "2019 Precipitation",
+    range = "A2:B15",
+    n_max = 20)
 
 ```
+
+#### Cleaning 2019 Precipitation Data.
+```{r cleaning 2019 precipitation data}
+precipitation19_data <-
+  precipitation19_data %>%
+  janitor::clean_names() %>%
+  mutate(year = "2019") %>%
+  replace_na(list(month = "Total")) %>%
+  drop_na()
+```
+
 
 
