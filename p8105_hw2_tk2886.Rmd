@@ -97,7 +97,7 @@ precipitation_data
 
 # Problem 2
 
-### Importing and cleaning the the FiveThirtyEight Data. 
+### Importing and cleaning the FiveThirtyEight Data. 
 ```{r}
 pol_data <- 
   read_csv("./fivethirtyeight_datasets/pols-month.csv") %>%
@@ -107,12 +107,22 @@ pol_data <-
   mutate(month = month.name[month]) %>%
   mutate(president = case_when(prez_dem == 1 ~ "dem", 
                                prez_gop == 1 ~ "gop",
-                               prez_gop == 2 ~ "gop"))
-  
+                               prez_gop == 2 ~ "gop")) %>%
+  select(year, month, president, everything(), -day, -prez_dem, -prez_gop)
+```
 
-pol_data
 
-view(pol_data)
+### Importing and cleaning the snp - Stock Market Data.
+```{r}
+stockmark_data <-
+  read_csv("./fivethirtyeight_datasets/snp.csv") %>%
+  janitor::clean_names() %>%
+  separate("date", into = c("month", "day", "year")) %>%
+  mutate(month = as.integer(month)) %>%
+  mutate(month = month.name[month]) 
+
+stockmark_data 
+view(stockmark_data)
 ```
 
 
