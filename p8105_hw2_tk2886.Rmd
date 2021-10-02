@@ -35,7 +35,7 @@ trashwheel_data <-
     janitor::clean_names() 
 ```
 
-### Using filter, mutate, as.integer to get specific data from Mr.Trash Wheel data
+#### Using filter, mutate, as.integer to get specific data from Mr.Trash Wheel data
 ```{r getting specific data from Mr.Trash Wheel data by using filter, mutate, as.integer}
 trashwheel_data <-
   trashwheel_data %>%
@@ -43,5 +43,11 @@ trashwheel_data <-
   mutate(sports_balls = as.integer(sports_balls))
 ```
 
+
+### Cleaning 2018 Precipitation Data
+
+```{r cleaning data pt2}
+
+```
 
 
