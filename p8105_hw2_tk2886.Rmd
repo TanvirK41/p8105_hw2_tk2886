@@ -87,7 +87,10 @@ precipitation19_data <-
 precipitation_data <-
   bind_rows(precipitation18_data, precipitation19_data) %>%
   mutate(month = month.name[month]) %>%
+  relocate(year, month, total) %>%
   knitr::kable()
+
+precipitation_data
 ```
 
 
@@ -125,7 +128,6 @@ stockmark_data
 ### Importing and cleaning the unemployment Data.
 ```{r}
 unemploy_data <-
-  unemploy_data <-
   read_csv("./fivethirtyeight_datasets/unemployment.csv") %>%
   janitor::clean_names() %>%
   pivot_longer(
