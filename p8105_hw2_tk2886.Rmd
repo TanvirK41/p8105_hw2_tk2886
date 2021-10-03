@@ -121,10 +121,12 @@ pol_data
 stockmark_data <-
   read_csv("./fivethirtyeight_datasets/snp.csv") %>%
   janitor::clean_names() %>%
-  separate(col = date, into = c("month", "day", "year")) %>%
-  mutate(across(.cols = c(year, month, day), as.integer)) %>%
-  mutate(month = month.name[month]) %>%
-  select(year, month, stockmarket_index = close)
+  mutate(date = mdy(date)) %>%
+  mutate(date = as.character(date))
+  #separate(col = date, into = c("month", "day", "year"), separate()) %>%
+  #mutate(across(.cols = c(year, month, day), as.integer)) %>%
+  #mutate(month = month.name[month])
+  #select(year, month, stockmarket_index = close)
 
 stockmark_data
 ```
