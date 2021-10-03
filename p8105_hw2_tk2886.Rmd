@@ -82,7 +82,7 @@ precipitation19_data <-
 ```
 
 
-### Combining 2018 and 2019 Precipitation Data
+### Combining 2018 and 2019 Precipitation Data. Use bind_rows instead of r.bind. Never use r.bind. 
 ```{r combining data}
 precipitation_data <-
   bind_rows(precipitation18_data, precipitation19_data) %>%
