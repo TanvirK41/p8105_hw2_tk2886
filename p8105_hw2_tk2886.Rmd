@@ -69,7 +69,6 @@ precipitation19_data <-
     sheet = "2019 Precipitation",
     range = "A2:B15",
     n_max = 20)
-
 ```
 
 ### Cleaning 2019 Precipitation Data.
@@ -80,8 +79,6 @@ precipitation19_data <-
   mutate(year = "2019") %>%
   #replace_na(list(month = "Total")) %>%
   drop_na()
-
-precipitation19_data
 ```
 
 
@@ -89,9 +86,8 @@ precipitation19_data
 ```{r combining data}
 precipitation_data <-
   bind_rows(precipitation18_data, precipitation19_data) %>%
-  mutate(month = month.name[month])
-
-precipitation_data
+  mutate(month = month.name[month]) %>%
+  knitr::kable()
 ```
 
 
