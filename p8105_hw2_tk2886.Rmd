@@ -38,9 +38,6 @@ trashwheel_data <-
   trashwheel_data %>%
   filter(!is.na(dumpster), month != "Grand Total") %>%
   mutate(sports_balls = as.integer(round(sports_balls, digits = 0)))
-
-trashwheel_data
-knitr::kable(trashwheel_data)
 ```
 
 
@@ -93,9 +90,16 @@ precipitation_data <-
   mutate(month = month.name[month]) %>%
   relocate(year, month, total) %>%
   knitr::kable()
-
-precipitation_data
 ```
+
+
+### Analysis of Data
+```{r}
+total_precipitation18 = sum(precipitation18_data$total)
+total_precipitation19 = sum(precipitation19_data$total)
+```
+1. The total precipitation in 2018 was `r total_precipitation18`. 
+2. The total precipitation in 2018 was `r total_precipitation19`. 
 
 
 # Problem 2
