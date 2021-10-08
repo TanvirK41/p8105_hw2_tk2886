@@ -66,8 +66,7 @@ precipitation19_data <-
   read_excel(
     "./data/TrashWheel/Trash-Wheel-Collection-Totals-7-2020-2.xlsx",
     sheet = "2019 Precipitation",
-    range = "A2:B15",
-    n_max = 20)
+    range = "A2:B15")
 ```
 
 ### Cleaning 2019 Precipitation Data.
