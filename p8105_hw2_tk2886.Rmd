@@ -13,16 +13,18 @@ library(readxl)
 library(lubridate)
 ```
 
-# Problem 1 
 
+# Problem 1 
 ### Importing Mr.Trash Wheel Data. Mr.Trash Wheel is an Excel File. 
 ```{r importing data with specific requirements}
 trashwheel_data <- 
   read_excel(
-    "./data/Trash-Wheel-Collection-Totals-8-6-19.xlsx",
+    "./data/TrashWheel/Trash-Wheel-Collection-Totals-7-2020-2.xlsx",
     sheet = "Mr. Trash Wheel",
     range = "A2:N408",
-    n_max = 20)
+    )
+
+view(trashwheel_data)
 ```
 
 ### Cleaning Mr.Trash Wheel Data
@@ -30,14 +32,19 @@ trashwheel_data <-
 trashwheel_data <-
     trashwheel_data %>%
     janitor::clean_names() 
+
+view(trashwheel_data)
 ```
 
 ### Using filter, mutate, as.integer to get specific data from Mr.Trash Wheel data
 ```{r getting specific data from Mr.Trash Wheel data by using filter, mutate, as.integer}
 trashwheel_data <-
   trashwheel_data %>%
-  filter(!is.na(dumpster), month != "Grand Total") %>%
+  filter(!str_detect(month, "Total")) %>%
   mutate(sports_balls = as.integer(round(sports_balls, digits = 0)))
+  
+
+view(trashwheel_data)
 ```
 
 
@@ -45,7 +52,7 @@ trashwheel_data <-
 ```{r importing 2018 Precipitation data with specific requirements}
 precipitation18_data <-
   read_excel(
-    "./data/Trash-Wheel-Collection-Totals-8-6-19.xlsx",
+    "./data/TrashWheel/Trash-Wheel-Collection-Totals-7-2020-2.xlsx",
     sheet = "2018 Precipitation",
     range = "A2:B15",
     n_max = 20)
@@ -58,7 +65,6 @@ precipitation18_data <-
   precipitation18_data %>%
   janitor::clean_names() %>%
   mutate(year = "2018") %>%
-  #replace_na(list(month = "Total")) %>%
   drop_na()
 ```
 
@@ -66,7 +72,7 @@ precipitation18_data <-
 ```{r importing 2019 Precipitation data with specific requirements}
 precipitation19_data <-
   read_excel(
-    "./data/Trash-Wheel-Collection-Totals-8-6-19.xlsx",
+    "./data/TrashWheel/Trash-Wheel-Collection-Totals-7-2020-2.xlsx",
     sheet = "2019 Precipitation",
     range = "A2:B15",
     n_max = 20)
@@ -78,7 +84,6 @@ precipitation19_data <-
   precipitation19_data %>%
   janitor::clean_names() %>%
   mutate(year = "2019") %>%
-  #replace_na(list(month = "Total")) %>%
   drop_na()
 ```
 
@@ -88,18 +93,39 @@ precipitation19_data <-
 precipitation_data <-
   bind_rows(precipitation18_data, precipitation19_data) %>%
   mutate(month = month.name[month]) %>%
-  relocate(year, month, total) %>%
-  knitr::kable()
+  relocate(year, month, total) 
+  #knitr::kable()
 ```
 
 
 ### Analysis of Data
 ```{r}
-total_precipitation18 = sum(precipitation18_data$total)
-total_precipitation19 = sum(precipitation19_data$total)
+variable_p18 = precipitation18_data %>% names()
+variable_p19 = precipitation19_data %>% names()
+total_precipitation18 = precipitation18_data %>% summarise(sum(total))
+total_precipitation19 = precipitation19_data %>% summarise(sum(total))
+median_p18 = precipitation18_data %>% summarise(median(total))
+median_p19 = precipitation19_data %>% summarise(median(total))
+mean_p18 = precipitation18_data %>% summarise(mean(total))
+mean_p19 = precipitation19_data %>% summarise(mean(total))
+p18_row = precipitation18_data %>% nrow()
+p19_row = precipitation19_data %>% nrow()
+p18_col = precipitation18_data %>% ncol()
+p19_col = precipitation19_data %>% ncol()
 ```
 1. The total precipitation in 2018 was `r total_precipitation18`. 
-2. The total precipitation in 2018 was `r total_precipitation19`. 
+2. The total precipitation in 2019 was `r total_precipitation19`. 
+3. The median precipitation in 2018 was `r median_p18`. 
+4. The median precipitation in 2019 was `r median_p19`. 
+5. The mean precipitation in 2018 was `r mean_p18`.
+6. The mean precipitation in 2019 was `r mean_p19`. 
+7. The total rows in precipitation data in 2018 `r p18_row`.
+8. The total rows in precipitation data in 2019 `r p19_row`.
+9. The total columns in precipitation data in 2018 `r p18_col`.
+10. The total columns in precipitation data in 2019 `r p19_col`.
+11. The variables in the precipitation data in 2018 are `r variable_p18`.
+12. The variables in the precipitation data in 2019 are `r variable_p19`.
+
 
 
 # Problem 2
@@ -159,10 +185,26 @@ view(merge_data1)
 ```
 
 
-
 ###Combining the newly constructed data (merged_data1) with the umeployment data. 
 ```{r}
 merge_data2 <-
   left_join(merge_data1, unemploy_data, by = c("year", "month"))
 view(merge_data2)
 ```
+
+
+### Problem 3
+### Importing and cleaning the Baby Name data. 
+```{r}
+babyname <-
+  read_csv("./BabyNames/Popular_Baby_Names.csv") %>%
+  janitor::clean_names() %>%
+  mutate(gender = str_to_lower(gender), childs_first_name = str_to_sentence(childs_first_name))
+
+babyname
+view(babyname)
+```
+
+
+
+
