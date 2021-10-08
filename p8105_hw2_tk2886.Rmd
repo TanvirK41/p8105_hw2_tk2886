@@ -138,7 +138,7 @@ pol_data <-
                                prez_gop == 2 ~ "gop")) %>%
   select(year, month, president, everything(), -day, -prez_dem, -prez_gop)
 
-pol_data
+view(pol_data)
 ```
 
 ### Importing and cleaning the snp - Stock Market Data.
@@ -189,6 +189,7 @@ view(merge_data2)
 
 
 ### Problem 3
+
 ### Importing and cleaning the Baby Name data. 
 ```{r}
 babyname <-
@@ -198,10 +199,14 @@ babyname <-
          ethnicity = recode(ethnicity, "WHITE NON HISP" = "WHITE NON HISPANIC",
                            "BLACK NON HISP" = "BLACK NON HISPANIC",
                            "ASIAN AND PACI" = "ASIAN AND PACIFIC"),
-         ethnicity = str_to_sentence(ethnicity))
+         ethnicity = str_to_sentence(ethnicity),
+         childs_first_name = str_to_sentence(childs_first_name))
+```
 
-babyname
-view(babyname)
+### Removing duplicate rows from Baby Name data.
+```{r}
+babyname <-
+  babyname %>% distinct()
 ```
 
 
