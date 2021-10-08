@@ -107,6 +107,7 @@ p19_row = precipitation19_data %>% nrow()
 p18_col = precipitation18_data %>% ncol()
 p19_col = precipitation19_data %>% ncol()
 ```
+
 After importing and cleaning the **2018 precipitation** data . The important variables names are **`r variable_p18`**. There are important information that may be examined. The *total rows* in precipitation data in 2018 is **`r p18_row`**. The *total columns* in precipitation data in 2018 is **`r p18_col`**. The *total precipitation* in 2018 was **`r total_precipitation18`**. The *median precipitation* in 2018 was **`r median_p18`**. The *mean precipitation* in 2018 was **`r mean_p18`**.
 
 After importing the **2019 precipitation** data. The important variables names are **`r variable_p19`**. There are important information that may be examined. The *total rows* in precipitation data in 2019 is **`r p19_row`**. The *total columns* in precipitation data in 2018 is **`r p19_col`**. The *important variables* in the precipitation data in 2019 are **`r variable_p19`**. The *total precipitation* in 2019 was **`r total_precipitation19`**. The *median precipitation* in 2019 was **`r median_p19`**. The *mean precipitation* in 2019 was **`r mean_p19`**. 
@@ -206,18 +207,17 @@ range_year_unemployment = unemploy_data %>%
   select(year) %>%
   range()
 ```
-The "pols-month" dataset contains data that have national politicians who are democratic or republican. The important variables in the pols-month dataset are `r name_poldata`. The dimensions of the pols-month data is `r dim_poldata`. The range of years in the pols-month data is from `r range_year`. 
+The *"pols-month"* dataset contains data that have national politicians who are democratic or republican. The important variables in the pols-month dataset are `r name_poldata`. The dimensions of the pols-month data is `r dim_poldata`. The range of years in the pols-month data is from `r range_year`. 
 
-The “snp” dataset contains data that is related to Standard & Poor’s stock market index (S&P), often used as a representative measure of stock market as a whole. The important variables in the snp dataset are `r name_stockmarket`. The dimensions of the snp data is `r dim_stockmarket`. The range of years in the snp data is from `r range_year_snp`. 
+The *“snp”* dataset contains data that is related to Standard & Poor’s stock market index (S&P), often used as a representative measure of stock market as a whole. The important variables in the snp dataset are `r name_stockmarket`. The dimensions of the snp data is `r dim_stockmarket`. The range of years in the snp data is from `r range_year_snp`. 
 
-The "unemployment" data set contains data percentage of unemployment for a specific year and month. The important variables in the unemployment are `r names_unemployment`. The dimensions in the uneployment data set are `r dim_unemployment`. The range of years in the unemployment is from `r range_year_unemployment`. 
-
+The *"unemployment"* data set contains data percentage of unemployment for a specific year and month. The important variables in the unemployment are `r names_unemployment`. The dimensions in the uneployment data set are `r dim_unemployment`. The range of years in the unemployment is from `r range_year_unemployment`. 
 
 
 ### Problem 3
 ### Importing and cleaning the Baby Name data. 
 ```{r}
-babyname <-
+babyname_data <-
   read_csv("./BabyNames/Popular_Baby_Names.csv") %>%
   janitor::clean_names() %>%
   mutate(gender = str_to_sentence(gender),
@@ -230,10 +230,15 @@ babyname <-
 
 ### Removing duplicate rows from Baby Name data.
 ```{r}
-babyname <-
-  babyname %>% distinct()
+babyname_data <-
+  babyname_data %>% distinct()
 ```
 
+###Olivia Rank
+```{r}
+Olivia_rank <- filter(babyname_data, childs_first_name == "Olivia") %>%
+  
+```
 
 
 
