@@ -90,6 +90,8 @@ precipitation_data <-
 ```
 
 
+
+
 ### Analysis of 2018 Precipitation Data and 2019 Precipitation Data
 ```{r}
 variable_p18 = precipitation18_data %>% names()
@@ -105,25 +107,24 @@ p19_row = precipitation19_data %>% nrow()
 p18_col = precipitation18_data %>% ncol()
 p19_col = precipitation19_data %>% ncol()
 ```
-After importing and cleaning the **2018 precipitation** data . There are important information that may be examined. 
-The *total rows* in precipitation data in 2018 is **`r p18_row`**. The *total columns* in precipitation data in 2018 is **`r p18_col`**. The *important variables* in the precipitation data in 2018 are **`r variable_p18`**.The *total precipitation* in 2018 was **`r total_precipitation18`**. The *median precipitation* in 2018 was **`r median_p18`**. The *mean precipitation* in 2018 was **`r mean_p18`**.
+After importing and cleaning the **2018 precipitation** data . The important variables names are **`r variable_p18`**. There are important information that may be examined. The *total rows* in precipitation data in 2018 is **`r p18_row`**. The *total columns* in precipitation data in 2018 is **`r p18_col`**. The *total precipitation* in 2018 was **`r total_precipitation18`**. The *median precipitation* in 2018 was **`r median_p18`**. The *mean precipitation* in 2018 was **`r mean_p18`**.
 
-After importing the **2019 precipitation** data. There are important information that may be examined. The *total rows* in precipitation data in 2019 is **`r p19_row`**. The *total columns* in precipitation data in 2018 is **`r p19_col`**. The *important variables* in the precipitation data in 2019 are **`r variable_p19`**. The *total precipitation* in 2019 was **`r total_precipitation19`**. The *median precipitation* in 2019 was **`r median_p19`**. The *mean precipitation* in 2019 was **`r mean_p19`**. 
-
+After importing the **2019 precipitation** data. The important variables names are **`r variable_p19`**. There are important information that may be examined. The *total rows* in precipitation data in 2019 is **`r p19_row`**. The *total columns* in precipitation data in 2018 is **`r p19_col`**. The *important variables* in the precipitation data in 2019 are **`r variable_p19`**. The *total precipitation* in 2019 was **`r total_precipitation19`**. The *median precipitation* in 2019 was **`r median_p19`**. The *mean precipitation* in 2019 was **`r mean_p19`**. 
 
 
 ### Analysis of Mr. Trash Wheel Data
 ```{r}
-variable_trashw = trashwheel_data %>% names()
+variable_trashwheel = trashwheel_data %>% names()
 row_trashwheel = trashwheel_data %>% nrow()
 col_trashwheel = trashwheel_data %>% ncol()
-median_sportsball = trashwheel_data %>% summarise(median(sports_balls))
+median_sportsball = trashwheel_data %>% 
+  filter(year == 2019) %>% summarise(median(sports_balls))
 ```
-After importing and cleaning the **Mr. Trash Wheel** data . There are important information that may be examined. The *total rows* in Mr.Trash Wheel data is **`r row_trashwheel`**. The *total columns* in Mr.Trash Wheel data is **`r col_trashwheel`**. The *median number of sports ball* is **`r median_sportsball`**.
+After importing and cleaning the **Mr. Trash Wheel** data . The important variables names are **`r variable_trashwheel`**. There are important information that may be examined. The *total rows* in Mr.Trash Wheel data is **`r row_trashwheel`**. The *total columns* in Mr.Trash Wheel data is **`r col_trashwheel`**. The *median number of sports ball* is **`r median_sportsball`**.
+
 
 
 # Problem 2
-
 ### Importing and cleaning the FiveThirtyEight Data. 
 ```{r}
 pol_data <- 
