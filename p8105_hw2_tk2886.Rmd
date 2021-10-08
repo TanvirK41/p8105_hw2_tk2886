@@ -150,7 +150,7 @@ stockmark_data <-
   mutate(across(.cols = c(month, day, year), as.integer)) %>%
   mutate(month = month.name[month])  %>%
   mutate(year = ifelse(year > 21, 1900 + year, 2000 + year)) %>%
-  select(year, month, stockmarket_index = close)
+  select(year, month, close)
 
 view(stockmark_data)
 ```
@@ -190,24 +190,27 @@ merge_data2 <-
 ```{r}
 name_poldata = pol_data %>% names()
 dim_poldata = pol_data %>% dim()
-range_year = pol_data %>% select(year) %>%
+range_year = pol_data %>% 
+  select(year) %>%
   range()
 
 name_stockmarket = stockmark_data %>% names()
 dim_stockmarket = stockmark_data %>% dim()
-range_year_snp = stockmark_data %>% select(year) %>%
+range_year_snp = stockmark_data %>% 
+  select(year) %>%
   range()
 
 names_unemployment = unemploy_data %>% names()
-names_unemployment = unemploy_data %>% dim()
-range_year_unemployment = unemploy_data %>% select(year) %>%
+dim_unemployment = unemploy_data %>% dim()
+range_year_unemployment = unemploy_data %>% 
+  select(year) %>%
   range()
-
-range_year
-range_year_snp
-range_year_unemployment
 ```
+The "pols-month" dataset contains data that have national politicians who are democratic or republican. The important variables in the pols-month dataset are `r name_poldata`. The dimensions of the pols-month data is `r dim_poldata`. The range of years in the pols-month data is from `r range_year`. 
 
+The “snp” dataset contains data that is related to Standard & Poor’s stock market index (S&P), often used as a representative measure of stock market as a whole. The important variables in the snp dataset are `r name_stockmarket`. The dimensions of the snp data is `r dim_stockmarket`. The range of years in the snp data is from `r range_year_snp`. 
+
+The "unemployment" data set contains data percentage of unemployment for a specific year and month. The important variables in the unemployment are `r names_unemployment`. The dimensions in the uneployment data set are `r dim_unemployment`. The range of years in the unemployment is from `r range_year_unemployment`. 
 
 
 
