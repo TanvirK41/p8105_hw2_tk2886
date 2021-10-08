@@ -188,8 +188,33 @@ view(merge_data2)
 ```
 
 
-### Problem 3
+### Analyze Data
 
+```{r}
+name_poldata = pol_data %>% names()
+dim_poldata = pol_data %>% dim()
+range_year = pol_data %>% select(year) %>%
+  range()
+
+name_stockmarket = stockmark_data %>% names()
+dim_stockmarket = stockmark_data %>% dim()
+range_year_snp = stockmark_data %>% select(year) %>%
+  range()
+
+names_unemployment = unemploy_data %>% names()
+names_unemployment = unemploy_data %>% dim()
+range_year_unemployment = unemploy_data %>% select(year) %>%
+  range()
+
+rangeyear_min
+range_year_snp
+range_year_unemployment
+```
+
+
+
+
+### Problem 3
 ### Importing and cleaning the Baby Name data. 
 ```{r}
 babyname <-
@@ -210,5 +235,11 @@ babyname <-
 ```
 
 
+### Creating table showing the rank in popularity of the name “Olivia” 
+```{r}
+olivia_rank <-
+  
+  
+```
 
 
