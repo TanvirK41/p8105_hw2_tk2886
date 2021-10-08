@@ -223,8 +223,9 @@ babyname_data <-
   mutate(gender = str_to_sentence(gender),
          ethnicity = recode(ethnicity, "WHITE NON HISP" = "WHITE NON HISPANIC",
                            "BLACK NON HISP" = "BLACK NON HISPANIC",
-                           "ASIAN AND PACI" = "ASIAN AND PACIFIC"),
-         ethnicity = str_to_sentence(ethnicity),
+                           "ASIAN AND PACI" = "ASIAN AND PACIFIC ISLANDER",
+                           "ASIAN AND PACIFIC" = "ASIAN AND PACIFIC ISLANDER"),
+         ethnicity = str_to_title(ethnicity),
          childs_first_name = str_to_sentence(childs_first_name))
 ```
 
@@ -236,7 +237,12 @@ babyname_data <-
 
 ###Olivia Rank
 ```{r}
-Olivia_rank <- filter(babyname_data, childs_first_name == "Olivia")
+Olivia_rank <- 
+  filter(babyname_data, childs_first_name == "Olivia") %>%
+  select(-gender, -count) %>%
+  pivot_wider(
+    names_from = "year_of_birth",
+    values_from = "rank")
 ```
 
 
