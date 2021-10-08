@@ -23,8 +23,6 @@ trashwheel_data <-
     sheet = "Mr. Trash Wheel",
     range = "A2:N408",
     )
-
-view(trashwheel_data)
 ```
 
 ### Cleaning Mr.Trash Wheel Data
@@ -32,8 +30,6 @@ view(trashwheel_data)
 trashwheel_data <-
     trashwheel_data %>%
     janitor::clean_names() 
-
-view(trashwheel_data)
 ```
 
 ### Using filter, mutate, as.integer to get specific data from Mr.Trash Wheel data
@@ -42,9 +38,6 @@ trashwheel_data <-
   trashwheel_data %>%
   filter(!str_detect(month, "Total")) %>%
   mutate(sports_balls = as.integer(round(sports_balls, digits = 0)))
-  
-
-view(trashwheel_data)
 ```
 
 
@@ -94,7 +87,6 @@ precipitation_data <-
   bind_rows(precipitation18_data, precipitation19_data) %>%
   mutate(month = month.name[month]) %>%
   relocate(year, month, total) 
-  #knitr::kable()
 ```
 
 
@@ -113,6 +105,7 @@ p19_row = precipitation19_data %>% nrow()
 p18_col = precipitation18_data %>% ncol()
 p19_col = precipitation19_data %>% ncol()
 ```
+After importing the precipitation 2018 and precipitation 2019 data. There are important information that people may want to know. 
 1. The total precipitation in 2018 was `r total_precipitation18`. 
 2. The total precipitation in 2019 was `r total_precipitation19`. 
 3. The median precipitation in 2018 was `r median_p18`. 
