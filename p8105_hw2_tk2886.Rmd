@@ -239,11 +239,26 @@ babyname_data <-
 ```{r}
 Olivia_rank <- 
   filter(babyname_data, childs_first_name == "Olivia") %>%
-  select(-gender, -count) %>%
+  select(-count) %>%
   pivot_wider(
     names_from = "year_of_birth",
-    values_from = "rank")
+    values_from = "rank") %>%
+  select(childs_first_name, gender, ethnicity, "2011", "2012", "2013", "2014", "2015", "2016")
+
+knitr::kable(Olivia_rank)
 ```
 
+###Male Rank
+```{r}
+Male_rank <-
+  filter(babyname_data, gender == "Male", rank == 1) %>%
+  select(-count) %>%
+  pivot_wider(
+    names_from = "year_of_birth",
+    values_from = "childs_first_name")%>%
+  select(rank, gender, ethnicity, "2011", "2012", "2013", "2014", "2015", "2016")
+
+view(Male_rank)
+```
 
 
