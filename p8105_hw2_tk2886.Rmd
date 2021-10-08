@@ -10,7 +10,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
 library(readxl)
-library(lubridate)
 ```
 
 
@@ -281,4 +280,7 @@ male_wnh16
 ```
 
 
-
+### Saving my second ggplot (scatterplot) as PDF
+```{r Saving ggplot as PDF, message = FALSE, warning = FALSE}
+ggsave("HW2scatter_plot.pdf", plot = male_wnh16, height = 4, width = 6)
+```
