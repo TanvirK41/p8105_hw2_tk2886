@@ -146,13 +146,13 @@ view(pol_data)
 stockmark_data <-
   read_csv("./fivethirtyeight_datasets/snp.csv") %>%
   janitor::clean_names() %>%
-  mutate(date = mdy(date)) %>%
-  separate(date, sep = "-", into = c("year", "month", "day")) %>%
-  mutate(across(.cols = c(year, month, day), as.integer)) %>%
-  mutate(month = month.name[month]) %>%
+  separate(date, sep = "/", into = c("month", "day", "year")) %>%
+  mutate(across(.cols = c(month, day, year), as.integer)) %>%
+  mutate(month = month.name[month])  %>%
+  mutate(year = ifelse(year > 21, 1900 + year, 2000 + year)) %>%
   select(year, month, stockmarket_index = close)
 
-stockmark_data
+view(stockmark_data)
 ```
 
 ### Importing and cleaning the unemployment Data.
@@ -175,8 +175,6 @@ unemploy_data
 ```{r}
 merge_data1 <-
   left_join(pol_data, stockmark_data, by = c("year", "month"))
-
-view(merge_data1)
 ```
 
 
@@ -184,7 +182,6 @@ view(merge_data1)
 ```{r}
 merge_data2 <-
   left_join(merge_data1, unemploy_data, by = c("year", "month"))
-view(merge_data2)
 ```
 
 
@@ -206,7 +203,7 @@ names_unemployment = unemploy_data %>% dim()
 range_year_unemployment = unemploy_data %>% select(year) %>%
   range()
 
-rangeyear_min
+range_year
 range_year_snp
 range_year_unemployment
 ```
@@ -235,11 +232,5 @@ babyname <-
 ```
 
 
-### Creating table showing the rank in popularity of the name “Olivia” 
-```{r}
-olivia_rank <-
-  
-  
-```
 
 
