@@ -236,8 +236,7 @@ babyname_data <-
 
 ###Olivia Rank
 ```{r}
-Olivia_rank <- filter(babyname_data, childs_first_name == "Olivia") %>%
-  
+Olivia_rank <- filter(babyname_data, childs_first_name == "Olivia")
 ```
 
 
