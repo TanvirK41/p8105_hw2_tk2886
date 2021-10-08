@@ -137,8 +137,6 @@ pol_data <-
                                prez_gop == 1 ~ "gop",
                                prez_gop == 2 ~ "gop")) %>%
   select(year, month, president, everything(), -day, -prez_dem, -prez_gop)
-
-view(pol_data)
 ```
 
 ### Importing and cleaning the snp - Stock Market Data.
@@ -151,8 +149,6 @@ stockmark_data <-
   mutate(month = month.name[month])  %>%
   mutate(year = ifelse(year > 21, 1900 + year, 2000 + year)) %>%
   select(year, month, close)
-
-view(stockmark_data)
 ```
 
 ### Importing and cleaning the unemployment Data.
@@ -167,7 +163,6 @@ unemploy_data <-
   ) %>%
   mutate(across(.col = c(year), as.integer)) %>%
   mutate(month = recode(month, "jan" = "January", "feb" = "February", "mar" = "March", "apr" = "April", "may" = "May", "jun" = "June",                                "jul" = "July", "aug" = "August", "sep" = "September", "oct" = "October", "nov" = "November", "dec" =                                  "December"))
-unemploy_data
 ```
 
 
@@ -186,7 +181,6 @@ merge_data2 <-
 
 
 ### Analyze Data
-
 ```{r}
 name_poldata = pol_data %>% names()
 dim_poldata = pol_data %>% dim()
@@ -232,8 +226,6 @@ babyname_data <-
 ```{r}
 babyname_data <-
   babyname_data %>% distinct()
-
-babyname_data
 ```
 
 ###Olivia Rank
@@ -256,7 +248,7 @@ Male_rank <-
   select(-count) %>%
   pivot_wider(
     names_from = "year_of_birth",
-    values_from = "childs_first_name")%>%
+    values_from = "childs_first_name") %>%
   select(rank, gender, ethnicity, "2011", "2012", "2013", "2014", "2015", "2016")
 ```
 
@@ -264,9 +256,6 @@ Male_rank <-
 ```{r}
 scatterplot_data <-
   filter(babyname_data, gender == "Male", year_of_birth == "2016", ethnicity == "White Non Hispanic") 
-
-scatterplot_data
-view(scatterplot_data)
 ```
 
 
