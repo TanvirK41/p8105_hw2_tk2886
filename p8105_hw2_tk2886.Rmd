@@ -25,16 +25,12 @@ trashwheel_data <-
 ```
 
 
-
-
 ### Cleaning Mr.Trash Wheel Data
 ```{r cleaning data}
 trashwheel_data <-
     trashwheel_data %>%
     janitor::clean_names() 
 ```
-
-
 
 
 ### Using filter, mutate, as.integer to format and get specific data from Mr.Trash Wheel data
@@ -48,7 +44,7 @@ trashwheel_data
 ```
 
 
-### Importing 2018 Precipitation Data. 2018 Precipitation is an Excel File. 
+### Importing 2018 Precipitation Data. 2018 Precipitation is an Excel File
 ```{r importing 2018 Precipitation data with specific requirements}
 precipitation18_data <-
   read_excel(
@@ -58,7 +54,7 @@ precipitation18_data <-
 ```
 
 
-### Cleaning 2018 Precipitation Data.
+### Cleaning 2018 Precipitation Data
 ```{r cleaning 2018 precipitation data}
 precipitation18_data <-
   precipitation18_data %>%
@@ -126,9 +122,9 @@ combined_rows = precipitation_data %>% nrow()
 combined_columns = precipitation_data %>% ncol()
 ```
 
-After importing and cleaning the **2018 precipitation** data , the important variables names are **`r variable_p18`**. The total number of observation are **`r p18_row`**. There are important information that may be examined. The *total rows* in precipitation data in 2018 is **`r p18_row`**. The *total columns* in precipitation data in 2018 is **`r p18_col`**. The *total precipitation* in 2018 was **`r total_precipitation18`**. The *median precipitation* in 2018 was **`r median_p18`**. The *mean precipitation* in 2018 was **`r mean_p18`**.
+After importing and cleaning the **2018 precipitation** data , the key variables names are **`r variable_p18`**. The total number of observation are **`r p18_row`**. There are important information that may be examined. The *total rows* in precipitation data in 2018 is **`r p18_row`**. The *total columns* in precipitation data in 2018 is **`r p18_col`**. The *total precipitation* in 2018 was **`r total_precipitation18`**. The *median precipitation* in 2018 was **`r median_p18`**. The *mean precipitation* in 2018 was **`r mean_p18`**.
 
-After importing the **2019 precipitation** data, the important variables names are **`r variable_p19`**. The total number of observation are **`r p19_row`**. There are important information that may be examined. The *total rows* in precipitation data in 2019 is **`r p19_row`**. The *total columns* in precipitation data in 2018 is **`r p19_col`**. The *total precipitation* in 2019 was **`r total_precipitation19`**. The *median precipitation* in 2019 was **`r median_p19`**. The *mean precipitation* in 2019 was **`r mean_p19`**. 
+After importing the **2019 precipitation** data, the key variables names are **`r variable_p19`**. The total number of observation are **`r p19_row`**. There are important information that may be examined. The *total rows* in precipitation data in 2019 is **`r p19_row`**. The *total columns* in precipitation data in 2018 is **`r p19_col`**. The *total precipitation* in 2019 was **`r total_precipitation19`**. The *median precipitation* in 2019 was **`r median_p19`**. The *mean precipitation* in 2019 was **`r mean_p19`**. 
 
 The *number of rows in the combined data set* of 2018 and 2019 precipitation is **`r combined_rows`**. The *number of columns in the combined data set* of 2018 and 2019 precipitation is **`r combined_columns`**. The *total precipitation in 2018 and 2019* is **`r combined_precipitation`**.  
 
