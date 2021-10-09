@@ -117,6 +117,7 @@ p18_row = precipitation18_data %>% nrow()
 p19_row = precipitation19_data %>% nrow()
 p18_col = precipitation18_data %>% ncol()
 p19_col = precipitation19_data %>% ncol()
+
 combined_precipitation = precipitation_data %>% summarise(sum(total))
 combined_rows = precipitation_data %>% nrow()
 combined_columns = precipitation_data %>% ncol()
@@ -134,10 +135,8 @@ The *number of rows in the combined data set* of 2018 and 2019 precipitation is 
 variable_trashwheel = trashwheel_data %>% names()
 row_trashwheel = trashwheel_data %>% nrow()
 col_trashwheel = trashwheel_data %>% ncol()
-median_sportsball = trashwheel_data %>% 
-  filter(year == 2019) %>% summarise(median(sports_balls))
-mean_sportsball = trashwheel_data %>%
-  filter(year == 2019) %>% summarise(mean(sports_balls))
+median_sportsball = trashwheel_data %>% filter(year == 2019) %>% summarise(median(sports_balls))
+mean_sportsball = trashwheel_data %>% filter(year == 2019) %>% summarise(mean(sports_balls))
 ```
 After importing and cleaning the **Mr. Trash Wheel** data . The key variables names are **`r variable_trashwheel`**. The *total rows* in Mr.Trash Wheel data is **`r row_trashwheel`**. The *total columns* in Mr.Trash Wheel data is **`r col_trashwheel`**. The *median number of sports ball* is **`r median_sportsball`**. The *mean number of sports ball* is **`r mean_sportsball`**.
 
