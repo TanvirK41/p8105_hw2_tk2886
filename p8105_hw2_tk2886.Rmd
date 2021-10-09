@@ -144,7 +144,7 @@ After importing and cleaning the **Mr. Trash Wheel** data . The important variab
 ### Importing and cleaning the FiveThirtyEight Data. 
 ```{r message = FALSE, warning = FALSE}
 pol_data <- 
-  read_csv("./fivethirtyeight_datasets/pols-month.csv") %>%
+  read_csv("./data/fivethirtyeight_datasets/pols-month.csv") %>%
   janitor::clean_names() %>%
   separate(col = mon, into = c("year","month", "day")) %>%
   mutate(across(.cols = c(year, month, day), as.integer)) %>%
@@ -158,7 +158,7 @@ pol_data <-
 ### Importing and cleaning the snp - Stock Market Data.
 ```{r message = FALSE, warning = FALSE}
 stockmark_data <-
-  read_csv("./fivethirtyeight_datasets/snp.csv") %>%
+  read_csv("./data/fivethirtyeight_datasets/snp.csv") %>%
   janitor::clean_names() %>%
   separate(date, sep = "/", into = c("month", "day", "year")) %>%
   mutate(across(.cols = c(month, day, year), as.integer)) %>%
@@ -170,7 +170,7 @@ stockmark_data <-
 ### Importing and cleaning the unemployment Data.
 ```{r message = FALSE, warning = FALSE}
 unemploy_data <-
-  read_csv("./fivethirtyeight_datasets/unemployment.csv") %>%
+  read_csv("./data/fivethirtyeight_datasets/unemployment.csv") %>%
   janitor::clean_names() %>%
   pivot_longer(
     jan:dec,
