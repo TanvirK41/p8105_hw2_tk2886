@@ -43,6 +43,9 @@ trashwheel_data <-
   trashwheel_data %>%
   filter(!str_detect(month, "Total")) %>%
   mutate(sports_balls = as.integer(round(sports_balls, digits = 0)))
+
+
+trashwheel_data
 ```
 
 
@@ -67,6 +70,8 @@ precipitation18_data <-
   janitor::clean_names() %>%
   mutate(year = "2018") %>%
   drop_na()
+
+precipitation18_data
 ```
 
 
@@ -87,6 +92,8 @@ precipitation19_data <-
   janitor::clean_names() %>%
   mutate(year = "2019") %>%
   drop_na()
+
+precipitation19_data
 ```
 
 
@@ -98,6 +105,8 @@ precipitation_data <-
   bind_rows(precipitation18_data, precipitation19_data) %>%
   mutate(month = month.name[month]) %>%
   relocate(year, month, total) 
+
+precipitation_data
 ```
 
 
@@ -119,9 +128,9 @@ p18_col = precipitation18_data %>% ncol()
 p19_col = precipitation19_data %>% ncol()
 ```
 
-After importing and cleaning the **2018 precipitation** data . The important variables names are **`r variable_p18`**. There are important information that may be examined. The *total rows* in precipitation data in 2018 is **`r p18_row`**. The *total columns* in precipitation data in 2018 is **`r p18_col`**. The *total precipitation* in 2018 was **`r total_precipitation18`**. The *median precipitation* in 2018 was **`r median_p18`**. The *mean precipitation* in 2018 was **`r mean_p18`**.
+After importing and cleaning the **2018 precipitation** data . The important variables names are **`r variable_p18`**. The total number of observation are **`r p18_row`**. There are important information that may be examined. The *total rows* in precipitation data in 2018 is **`r p18_row`**. The *total columns* in precipitation data in 2018 is **`r p18_col`**. The *total precipitation* in 2018 was **`r total_precipitation18`**. The *median precipitation* in 2018 was **`r median_p18`**. The *mean precipitation* in 2018 was **`r mean_p18`**.
 
-After importing the **2019 precipitation** data. The important variables names are **`r variable_p19`**. There are important information that may be examined. The *total rows* in precipitation data in 2019 is **`r p19_row`**. The *total columns* in precipitation data in 2018 is **`r p19_col`**. The *important variables* in the precipitation data in 2019 are **`r variable_p19`**. The *total precipitation* in 2019 was **`r total_precipitation19`**. The *median precipitation* in 2019 was **`r median_p19`**. The *mean precipitation* in 2019 was **`r mean_p19`**. 
+After importing the **2019 precipitation** data. The important variables names are **`r variable_p19`**. The total number of observation are **`r p19_row`**. There are important information that may be examined. The *total rows* in precipitation data in 2019 is **`r p19_row`**. The *total columns* in precipitation data in 2018 is **`r p19_col`**. The *total precipitation* in 2019 was **`r total_precipitation19`**. The *median precipitation* in 2019 was **`r median_p19`**. The *mean precipitation* in 2019 was **`r mean_p19`**. 
 
 
 
@@ -153,6 +162,9 @@ pol_data <-
                                prez_gop == 1 ~ "gop",
                                prez_gop == 2 ~ "gop")) %>%
   select(year, month, president, everything(), -day, -prez_dem, -prez_gop)
+
+
+pol_data
 ```
 
 ### Importing and cleaning the snp - Stock Market Data.
@@ -165,6 +177,8 @@ stockmark_data <-
   mutate(month = month.name[month])  %>%
   mutate(year = ifelse(year > 21, 1900 + year, 2000 + year)) %>%
   select(year, month, close)
+
+stockmark_data
 ```
 
 ### Importing and cleaning the unemployment Data.
@@ -179,6 +193,8 @@ unemploy_data <-
   ) %>%
   mutate(across(.col = c(year), as.integer)) %>%
   mutate(month = recode(month, "jan" = "January", "feb" = "February", "mar" = "March", "apr" = "April", "may" = "May", "jun" = "June",                                "jul" = "July", "aug" = "August", "sep" = "September", "oct" = "October", "nov" = "November", "dec" =                                  "December"))
+
+unemploy_data
 ```
 
 
@@ -193,6 +209,10 @@ merge_data1 <-
 ```{r}
 merge_data2 <-
   left_join(merge_data1, unemploy_data, by = c("year", "month"))
+
+merge_data2
+
+view(merge_data2)
 ```
 
 
@@ -242,12 +262,14 @@ babyname_data <-
 ```{r removing duplicate rows}
 babyname_data <-
   babyname_data %>% distinct()
+
+babyname_data
 ```
 
 ### Olivia Rank Data table 
 ```{r creating a table showing the rank popularity of the name -Olivia}
 Olivia_rank <- 
-  filter(babyname_data, childs_first_name == "Olivia") %>%
+  filter(babyname_data, childs_first_name == "Olivia" & gender == "Female") %>%
   select(-count) %>%
   pivot_wider(
     names_from = "year_of_birth",
@@ -260,7 +282,7 @@ knitr::kable(Olivia_rank)
 ### Male Rank
 ```{r}
 Male_rank <-
-  filter(babyname_data, gender == "Male", rank == 1) %>%
+  filter(babyname_data, gender == "Male" & rank == 1) %>%
   select(-count) %>%
   pivot_wider(
     names_from = "year_of_birth",
