@@ -122,7 +122,7 @@ After importing and cleaning the **Mr. Trash Wheel** data . The important variab
 
 # Problem 2
 ### Importing and cleaning the FiveThirtyEight Data. 
-```{r}
+```{r message = FALSE, warning = FALSE}
 pol_data <- 
   read_csv("./fivethirtyeight_datasets/pols-month.csv") %>%
   janitor::clean_names() %>%
@@ -136,7 +136,7 @@ pol_data <-
 ```
 
 ### Importing and cleaning the snp - Stock Market Data.
-```{r}
+```{r message = FALSE, warning = FALSE}
 stockmark_data <-
   read_csv("./fivethirtyeight_datasets/snp.csv") %>%
   janitor::clean_names() %>%
@@ -148,7 +148,7 @@ stockmark_data <-
 ```
 
 ### Importing and cleaning the unemployment Data.
-```{r}
+```{r message = FALSE, warning = FALSE}
 unemploy_data <-
   read_csv("./fivethirtyeight_datasets/unemployment.csv") %>%
   janitor::clean_names() %>%
@@ -205,7 +205,7 @@ The *"unemployment"* data set contains data percentage of unemployment for a spe
 
 ### Problem 3
 ### Importing and cleaning the Baby Name data. 
-```{r}
+```{r message = FALSE, warning = FALSE}
 babyname_data <-
   read_csv("./BabyNames/Popular_Baby_Names.csv") %>%
   janitor::clean_names() %>%
