@@ -124,7 +124,6 @@ p19_col = precipitation19_data %>% ncol()
 combined_precipitation = precipitation_data %>% summarise(sum(total))
 combined_rows = precipitation_data %>% nrow()
 combined_columns = precipitation_data %>% ncol()
-combined_median = precipitation_data = precipitation_data %>% summarise(median(total))
 ```
 
 After importing and cleaning the **2018 precipitation** data , the important variables names are **`r variable_p18`**. The total number of observation are **`r p18_row`**. There are important information that may be examined. The *total rows* in precipitation data in 2018 is **`r p18_row`**. The *total columns* in precipitation data in 2018 is **`r p18_col`**. The *total precipitation* in 2018 was **`r total_precipitation18`**. The *median precipitation* in 2018 was **`r median_p18`**. The *mean precipitation* in 2018 was **`r mean_p18`**.
