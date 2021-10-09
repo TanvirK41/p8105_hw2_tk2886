@@ -43,13 +43,7 @@ trashwheel_data <-
   trashwheel_data %>%
   filter(!str_detect(month, "Total")) %>%
   mutate(sports_balls = as.integer(round(sports_balls, digits = 0)))
-
-
-trashwheel_data
 ```
-
-
-
 
 
 ### Importing 2018 Precipitation Data. 2018 Precipitation is an Excel File. 
@@ -58,8 +52,7 @@ precipitation18_data <-
   read_excel(
     "./data/TrashWheel/Trash-Wheel-Collection-Totals-7-2020-2.xlsx",
     sheet = "2018 Precipitation",
-    range = "A2:B15",
-    n_max = 20)
+    range = "A2:B15")
 ```
 
 
@@ -70,8 +63,6 @@ precipitation18_data <-
   janitor::clean_names() %>%
   mutate(year = "2018") %>%
   drop_na()
-
-precipitation18_data
 ```
 
 
@@ -92,8 +83,6 @@ precipitation19_data <-
   janitor::clean_names() %>%
   mutate(year = "2019") %>%
   drop_na()
-
-precipitation19_data
 ```
 
 
@@ -105,8 +94,6 @@ precipitation_data <-
   bind_rows(precipitation18_data, precipitation19_data) %>%
   mutate(month = month.name[month]) %>%
   relocate(year, month, total) 
-
-precipitation_data
 ```
 
 
@@ -162,9 +149,6 @@ pol_data <-
                                prez_gop == 1 ~ "gop",
                                prez_gop == 2 ~ "gop")) %>%
   select(year, month, president, everything(), -day, -prez_dem, -prez_gop)
-
-
-pol_data
 ```
 
 ### Importing and cleaning the snp - Stock Market Data.
@@ -177,8 +161,6 @@ stockmark_data <-
   mutate(month = month.name[month])  %>%
   mutate(year = ifelse(year > 21, 1900 + year, 2000 + year)) %>%
   select(year, month, close)
-
-stockmark_data
 ```
 
 ### Importing and cleaning the unemployment Data.
@@ -193,31 +175,25 @@ unemploy_data <-
   ) %>%
   mutate(across(.col = c(year), as.integer)) %>%
   mutate(month = recode(month, "jan" = "January", "feb" = "February", "mar" = "March", "apr" = "April", "may" = "May", "jun" = "June",                                "jul" = "July", "aug" = "August", "sep" = "September", "oct" = "October", "nov" = "November", "dec" =                                  "December"))
-
-unemploy_data
 ```
 
 
 ### Combining the "pols-month" data and "snp" Data by using left join. 
-```{r}
+```{r comibing the pols-month data and snp-data}
 merge_data1 <-
   left_join(pol_data, stockmark_data, by = c("year", "month"))
 ```
 
 
-### Combining the newly constructed data (merged_data1) with the umeployment data. 
-```{r}
+### Combining the newly constructed data (merged_data1) with the umeployment data by using left join. 
+```{r combiing the newly constructed data with unemployment data}
 merge_data2 <-
   left_join(merge_data1, unemploy_data, by = c("year", "month"))
-
-merge_data2
-
-view(merge_data2)
 ```
 
 
 ### Analysis of FiveThirtyEight Datas 
-```{r}
+```{r Analyzing important variables in the FiveThirtyEight Data by storing them for later use}
 name_poldata = pol_data %>% names()
 dim_poldata = pol_data %>% dim()
 range_year = pol_data %>% 
@@ -262,8 +238,6 @@ babyname_data <-
 ```{r removing duplicate rows}
 babyname_data <-
   babyname_data %>% distinct()
-
-babyname_data
 ```
 
 ### Olivia Rank Data table 
@@ -279,8 +253,8 @@ Olivia_rank <-
 knitr::kable(Olivia_rank)
 ```
 
-### Male Rank
-```{r}
+### Creating Male Rank Table 
+```{r creating Male Baby Name rank table}
 Male_rank <-
   filter(babyname_data, gender == "Male" & rank == 1) %>%
   select(-count) %>%
@@ -293,14 +267,14 @@ knitr::kable(Male_rank)
 ```
 
 ### Scatterplot Data 
-```{r}
+```{r Extracting a specific data from the Popular name data set and this data will be later used to create a scatterplot}
 scatterplot_data <-
   filter(babyname_data, gender == "Male", year_of_birth == "2016", ethnicity == "White Non Hispanic") 
 ```
 
 
 ### Creating Scatterplot
-```{r}
+```{r Creating a scatterplot with the extracted data}
 male_wnh16 = ggplot(scatterplot_data, aes(x = rank, y = count)) +
   geom_point() + 
   ggtitle("Male Non-White Hispanic Male Children Name in Popularity Rank Versus Real Count") + theme(plot.title = element_text(hjust = 0.5))
