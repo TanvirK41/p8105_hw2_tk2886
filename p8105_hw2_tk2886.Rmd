@@ -214,6 +214,7 @@ merge_data2 <-
 ```
 
 
+
 #### Analysis of FiveThirtyEight Datasets 
 ```{r Analyzing important variables in the FiveThirtyEight Data by storing them for later use}
 name_poldata = pol_data %>% names()
@@ -234,6 +235,15 @@ The *“snp”* data set contains data that is related to Standard & Poor’s st
 
 The *"unemployment"* data set contains data percentage of unemployment for a specific year and month and this information was obtained from the wesbite. The *important variables* in the unemployment are **`r names_unemployment`**. The *dimensions* in the unemployment data set are **`r dim_unemployment`**. The *range of years* in the unemployment is from **`r range_year_unemployment`**. 
 
+
+#### Analysis of Merged Data
+```{r}
+merged_name = merge_data2 %>% names()
+merged_row = merge_data2 %>% nrow()
+merged_col = merge_data2 %>% ncol()
+merged_rangeyr =  merge_data2 %>% select(year) %>% range()
+```
+After combining the "pols data" with "snp" data with left join and then combining that new constructed data to "unemployment" data with left join, the *key variable names* are **`r merged_name`**. The dimension of the newly constructed data is **`r merged_row` x** **`r merged_col`**. The *range of the year* for the new data is **`r merged_rangeyr`.**
 
 
 ### Problem 3
