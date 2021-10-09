@@ -14,7 +14,7 @@ library(readxl)
 
 
 # Problem 1 
-### Importing Mr.Trash Wheel Data. Mr.Trash Wheel is an Excel File. 
+#### Importing Mr.Trash Wheel Data. Mr.Trash Wheel is an Excel File. 
 ```{r importing data with specific requirements}
 trashwheel_data <- 
   read_excel(
@@ -25,7 +25,7 @@ trashwheel_data <-
 ```
 
 
-### Cleaning Mr.Trash Wheel Data
+#### Cleaning Mr.Trash Wheel Data
 ```{r cleaning data}
 trashwheel_data <-
     trashwheel_data %>%
@@ -33,7 +33,7 @@ trashwheel_data <-
 ```
 
 
-### Using filter, mutate, as.integer to format and get specific data from Mr.Trash Wheel data
+#### Using filter, mutate, as.integer to format and get specific data from Mr.Trash Wheel data
 ```{r getting specific data from Mr.Trash Wheel data by using filter, mutate, as.integer}
 trashwheel_data <-
   trashwheel_data %>%
@@ -44,7 +44,7 @@ trashwheel_data
 ```
 
 
-### Importing 2018 Precipitation Data. 2018 Precipitation is an Excel File
+#### Importing 2018 Precipitation Data. 2018 Precipitation is an Excel File
 ```{r importing 2018 Precipitation data with specific requirements}
 precipitation18_data <-
   read_excel(
@@ -54,7 +54,7 @@ precipitation18_data <-
 ```
 
 
-### Cleaning 2018 Precipitation Data
+#### Cleaning 2018 Precipitation Data
 ```{r cleaning 2018 precipitation data}
 precipitation18_data <-
   precipitation18_data %>%
@@ -67,7 +67,7 @@ precipitation18_data
 
 
 
-### Importing 2019 Precipitation Data. 2019 Precipitation is an Excel File, 
+#### Importing 2019 Precipitation Data. 2019 Precipitation is an Excel File, 
 ```{r importing 2019 Precipitation data with specific requirements}
 precipitation19_data <-
   read_excel(
@@ -76,7 +76,7 @@ precipitation19_data <-
     range = "A2:B15")
 ```
 
-### Cleaning 2019 Precipitation Data.
+#### Cleaning 2019 Precipitation Data.
 ```{r cleaning 2019 precipitation data}
 precipitation19_data <-
   precipitation19_data %>%
@@ -90,7 +90,7 @@ precipitation19_data
 
 
 
-### Combining 2018 and 2019 Precipitation Data. Use bind_rows instead of r.bind. Never use r.bind. 
+#### Combining 2018 and 2019 Precipitation Data. Use bind_rows instead of r.bind. Never use r.bind. 
 ```{r combining 2018 and 2019 precipitation data}
 precipitation_data <-
   bind_rows(precipitation18_data, precipitation19_data) %>%
@@ -103,7 +103,7 @@ precipitation_data
 
 
 
-### Analysis of 2018 Precipitation Data and 2019 Precipitation Data
+#### Analysis of 2018 Precipitation Data and 2019 Precipitation Data
 ```{r storing important information for 2018 and 2019 precipitation }
 variable_p18 = precipitation18_data %>% names()
 variable_p19 = precipitation19_data %>% names()
@@ -129,7 +129,7 @@ After importing the **2019 precipitation** data, the key variables names are **`
 The *number of rows in the combined data set* of 2018 and 2019 precipitation is **`r combined_rows`**. The *number of columns in the combined data set* of 2018 and 2019 precipitation is **`r combined_columns`**. The *total precipitation in 2018 and 2019* is **`r combined_precipitation`**.  
 
 
-### Analysis of Mr. Trash Wheel Data
+#### Analysis of Mr. Trash Wheel Data
 ```{r storing important information for Mr. Trash Wheel Data}
 variable_trashwheel = trashwheel_data %>% names()
 row_trashwheel = trashwheel_data %>% nrow()
@@ -144,8 +144,8 @@ After importing and cleaning the **Mr. Trash Wheel** data . The key variables na
 
 
 # Problem 2
-### Importing and cleaning the FiveThirtyEight Data. 
-#### Interesting note is that prez_gop equals to 1 and 2. 
+#### Importing and cleaning the FiveThirtyEight Data. 
+##### Interesting note is that prez_gop equals to 1 and 2. 
 ```{r message = FALSE, warning = FALSE}
 pol_data <- 
   read_csv("./data/fivethirtyeight_datasets/pols-month.csv") %>%
@@ -162,7 +162,7 @@ pol_data <-
 
 
 
-### Importing and cleaning the snp - Stock Market Data.
+#### Importing and cleaning the snp - Stock Market Data.
 ```{r message = FALSE, warning = FALSE}
 stockmark_data <-
   read_csv("./data/fivethirtyeight_datasets/snp.csv") %>%
@@ -174,7 +174,7 @@ stockmark_data <-
   select(year, month, close)
 ```
 
-### Importing and cleaning the unemployment Data.
+#### Importing and cleaning the unemployment Data.
 ```{r message = FALSE, warning = FALSE}
 unemploy_data <-
   read_csv("./data/fivethirtyeight_datasets/unemployment.csv") %>%
@@ -189,21 +189,21 @@ unemploy_data <-
 ```
 
 
-### Combining the "pols-month" data and "snp" Data by using left join. 
+#### Combining the "pols-month" data and "snp" Data by using left join. 
 ```{r combining the pols-month data and snp-data}
 merge_data1 <-
   left_join(pol_data, stockmark_data, by = c("year", "month"))
 ```
 
 
-### Combining the newly constructed data (merged_data1) with the umeployment data by using left join. 
+#### Combining the newly constructed data (merge_data1) with the umeployment data by using left join. 
 ```{r combining the newly constructed data with unemployment data}
 merge_data2 <-
   left_join(merge_data1, unemploy_data, by = c("year", "month"))
 ```
 
 
-### Analysis of FiveThirtyEight Data
+#### Analysis of FiveThirtyEight Datasets 
 ```{r Analyzing important variables in the FiveThirtyEight Data by storing them for later use}
 name_poldata = pol_data %>% names()
 dim_poldata = pol_data %>% dim()
@@ -226,7 +226,7 @@ The *"unemployment"* data set contains data percentage of unemployment for a spe
 
 
 ### Problem 3
-### Importing and cleaning the Baby Name data. 
+#### Importing and cleaning the Baby Name data. 
 ```{r message = FALSE, warning = FALSE}
 babyname_data <-
   read_csv("./data/BabyNames/Popular_Baby_Names.csv") %>%
@@ -242,7 +242,7 @@ babyname_data <-
 
 
 
-### Removing duplicate rows from Baby Name data.
+#### Removing duplicate rows from Baby Name data.
 ```{r removing duplicate rows}
 babyname_data <-
   babyname_data %>% distinct()
@@ -250,7 +250,7 @@ babyname_data <-
 
 
 
-### Olivia Name Rank Data table 
+#### Creating Olivia Name Rank Data table 
 ```{r creating a table showing the rank popularity of the name -Olivia}
 Olivia_rank <- 
   filter(babyname_data, childs_first_name == "Olivia" & gender == "Female") %>%
@@ -265,7 +265,7 @@ knitr::kable(Olivia_rank)
 
 
 
-### Creating Male Rank Table 
+#### Creating Male Rank Table 
 ```{r creating Male Baby Name rank table}
 Male_rank <-
   filter(babyname_data, gender == "Male" & rank == 1) %>%
@@ -280,14 +280,14 @@ knitr::kable(Male_rank)
 
 
 
-### Scatterplot Data 
+#### Scatterplot Data 
 ```{r Extracting a specific data from the Popular name data set and this data will be later used to create a scatterplot}
 scatterplot_data <-
   filter(babyname_data, gender == "Male", year_of_birth == "2016", ethnicity == "White Non Hispanic") 
 ```
 
 
-### Creating Scatterplot
+#### Creating Scatterplot
 ```{r Creating a scatterplot with the extracted data}
 male_wnh16 = ggplot(scatterplot_data, aes(x = rank, y = count)) +
   geom_point() + 
@@ -297,7 +297,7 @@ male_wnh16
 ```
 
 
-### Saving my second ggplot (scatterplot) as PDF
+#### Saving my second ggplot (scatterplot) as PDF
 ```{r Saving ggplot as PDF, message = FALSE, warning = FALSE}
 ggsave("HW2scatter_plot.pdf", plot = male_wnh16, height = 4, width = 6)
 ```
