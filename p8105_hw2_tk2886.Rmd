@@ -290,7 +290,7 @@ scatterplot_data <-
 ```{r Creating a scatterplot with the extracted data}
 male_wnh16 = ggplot(scatterplot_data, aes(x = rank, y = count)) +
   geom_point() + 
-  ggtitle("Male Non-White Hispanic Children Name in Popularity Rank Versus Count") + theme(plot.title = element_text(hjust = 0.5))
+  ggtitle("2016 Male Non-White Hispanic Children Name in Popularity Rank Versus Count") + theme(plot.title = element_text(hjust = 0.5))
 
 male_wnh16
 ```
