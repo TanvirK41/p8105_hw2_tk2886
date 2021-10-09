@@ -162,14 +162,14 @@ unemploy_data <-
 ```
 
 
-###Combining the Poll and Stock Market Data by using left join. 
+### Combining the "pols-month" data and "snp" Data by using left join. 
 ```{r}
 merge_data1 <-
   left_join(pol_data, stockmark_data, by = c("year", "month"))
 ```
 
 
-###Combining the newly constructed data (merged_data1) with the umeployment data. 
+### Combining the newly constructed data (merged_data1) with the umeployment data. 
 ```{r}
 merge_data2 <-
   left_join(merge_data1, unemploy_data, by = c("year", "month"))
