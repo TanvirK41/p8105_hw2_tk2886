@@ -139,12 +139,13 @@ median_sportsball = trashwheel_data %>%
 mean_sportsball = trashwheel_data %>%
   filter(year == 2019) %>% summarise(mean(sports_balls))
 ```
-After importing and cleaning the **Mr. Trash Wheel** data . The important variables names are **`r variable_trashwheel`**. The *total rows* in Mr.Trash Wheel data is **`r row_trashwheel`**. The *total columns* in Mr.Trash Wheel data is **`r col_trashwheel`**. The *median number of sports ball* is **`r median_sportsball`**. The *mean number of sports ball* is **`r mean_sportsball`**.
+After importing and cleaning the **Mr. Trash Wheel** data . The key variables names are **`r variable_trashwheel`**. The *total rows* in Mr.Trash Wheel data is **`r row_trashwheel`**. The *total columns* in Mr.Trash Wheel data is **`r col_trashwheel`**. The *median number of sports ball* is **`r median_sportsball`**. The *mean number of sports ball* is **`r mean_sportsball`**.
 
 
 
 # Problem 2
 ### Importing and cleaning the FiveThirtyEight Data. 
+#### Interesting note is that prez_gop equals to 1 and 2. 
 ```{r message = FALSE, warning = FALSE}
 pol_data <- 
   read_csv("./data/fivethirtyeight_datasets/pols-month.csv") %>%
@@ -157,6 +158,9 @@ pol_data <-
                                prez_gop == 2 ~ "gop")) %>%
   select(year, month, president, everything(), -day, -prez_dem, -prez_gop)
 ```
+
+
+
 
 ### Importing and cleaning the snp - Stock Market Data.
 ```{r message = FALSE, warning = FALSE}
@@ -186,20 +190,20 @@ unemploy_data <-
 
 
 ### Combining the "pols-month" data and "snp" Data by using left join. 
-```{r comibing the pols-month data and snp-data}
+```{r combining the pols-month data and snp-data}
 merge_data1 <-
   left_join(pol_data, stockmark_data, by = c("year", "month"))
 ```
 
 
 ### Combining the newly constructed data (merged_data1) with the umeployment data by using left join. 
-```{r combiing the newly constructed data with unemployment data}
+```{r combining the newly constructed data with unemployment data}
 merge_data2 <-
   left_join(merge_data1, unemploy_data, by = c("year", "month"))
 ```
 
 
-### Analysis of FiveThirtyEight Datas 
+### Analysis of FiveThirtyEight Data
 ```{r Analyzing important variables in the FiveThirtyEight Data by storing them for later use}
 name_poldata = pol_data %>% names()
 dim_poldata = pol_data %>% dim()
@@ -211,13 +215,13 @@ range_year_snp = stockmark_data %>% select(year) %>% range()
 
 names_unemployment = unemploy_data %>% names()
 dim_unemployment = unemploy_data %>% dim()
-range_year_unemployment = unemploy_data %>% select(year) %>%range()
+range_year_unemployment = unemploy_data %>% select(year) %>% range()
 ```
 The *"pols-month"* data set contains data that have national politicians who are democratic or republican. The important variables in the pols-month data set are **`r name_poldata`**. The *dimensions* of the pols-month data is **`r dim_poldata`**. The *range of years* in the pols-month data is from **`r range_year`**. 
 
-The *“snp”* data set contains data that is related to Standard & Poor’s stock market index (S&P), often used as a representative measure of stock market as a whole. The *important variables* in the snp dataset are **`r name_stockmarket`**. The *dimensions* of the snp data is **`r dim_stockmarket`**. The *range of years* in the "snp" data is from **`r range_year_snp`**. 
+The *“snp”* data set contains data that is related to Standard & Poor’s stock market index (S&P), often used as a representative measure of stock market as a whole. The *important variables* in the snp data set are **`r name_stockmarket`**. The *dimensions* of the snp data is **`r dim_stockmarket`**. The *range of years* in the "snp" data is from **`r range_year_snp`**. 
 
-The *"unemployment"* data set contains data percentage of unemployment for a specific year and month. The *important variables* in the unemployment are **`r names_unemployment`**. The *dimensions* in the uneployment data set are **`r dim_unemployment`**. The *range of years* in the unemployment is from **`r range_year_unemployment`**. 
+The *"unemployment"* data set contains data percentage of unemployment for a specific year and month. The *important variables* in the unemployment are **`r names_unemployment`**. The *dimensions* in the unemployment data set are **`r dim_unemployment`**. The *range of years* in the unemployment is from **`r range_year_unemployment`**. 
 
 
 
@@ -246,7 +250,7 @@ babyname_data <-
 
 
 
-### Olivia Rank Data table 
+### Olivia Name Rank Data table 
 ```{r creating a table showing the rank popularity of the name -Olivia}
 Olivia_rank <- 
   filter(babyname_data, childs_first_name == "Olivia" & gender == "Female") %>%
@@ -281,8 +285,6 @@ knitr::kable(Male_rank)
 scatterplot_data <-
   filter(babyname_data, gender == "Male", year_of_birth == "2016", ethnicity == "White Non Hispanic") 
 ```
-
-
 
 
 ### Creating Scatterplot
