@@ -212,11 +212,11 @@ range_year_unemployment = unemploy_data %>%
   select(year) %>%
   range()
 ```
-The *"pols-month"* dataset contains data that have national politicians who are democratic or republican. The important variables in the pols-month dataset are `r name_poldata`. The dimensions of the pols-month data is `r dim_poldata`. The range of years in the pols-month data is from `r range_year`. 
+The *"pols-month"* data set contains data that have national politicians who are democratic or republican. The important variables in the pols-month data set are **`r name_poldata`**. The *dimensions* of the pols-month data is **`r dim_poldata`**. The *range of years* in the pols-month data is from **`r range_year`**. 
 
-The *“snp”* dataset contains data that is related to Standard & Poor’s stock market index (S&P), often used as a representative measure of stock market as a whole. The important variables in the snp dataset are `r name_stockmarket`. The dimensions of the snp data is `r dim_stockmarket`. The range of years in the snp data is from `r range_year_snp`. 
+The *“snp”* data set contains data that is related to Standard & Poor’s stock market index (S&P), often used as a representative measure of stock market as a whole. The *important variables* in the snp dataset are **`r name_stockmarket`**. The *dimensions* of the snp data is **`r dim_stockmarket`**. The *range of years* in the "snp" data is from **`r range_year_snp`**. 
 
-The *"unemployment"* data set contains data percentage of unemployment for a specific year and month. The important variables in the unemployment are `r names_unemployment`. The dimensions in the uneployment data set are `r dim_unemployment`. The range of years in the unemployment is from `r range_year_unemployment`. 
+The *"unemployment"* data set contains data percentage of unemployment for a specific year and month. The *important variables* in the unemployment are **`r names_unemployment`**. The *dimensions* in the uneployment data set are **`r dim_unemployment`**. The *range of years* in the unemployment is from **`r range_year_unemployment`**. 
 
 
 ### Problem 3
