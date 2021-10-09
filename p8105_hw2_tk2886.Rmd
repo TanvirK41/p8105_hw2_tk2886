@@ -200,27 +200,24 @@ merge_data2 <-
 ```{r Analyzing important variables in the FiveThirtyEight Data by storing them for later use}
 name_poldata = pol_data %>% names()
 dim_poldata = pol_data %>% dim()
-range_year = pol_data %>% 
-  select(year) %>%
-  range()
+range_year = pol_data %>% select(year) %>% range()
 
 name_stockmarket = stockmark_data %>% names()
 dim_stockmarket = stockmark_data %>% dim()
-range_year_snp = stockmark_data %>% 
-  select(year) %>%
-  range()
+range_year_snp = stockmark_data %>% select(year) %>% range()
 
 names_unemployment = unemploy_data %>% names()
 dim_unemployment = unemploy_data %>% dim()
-range_year_unemployment = unemploy_data %>% 
-  select(year) %>%
-  range()
+range_year_unemployment = unemploy_data %>% select(year) %>%range()
 ```
 The *"pols-month"* data set contains data that have national politicians who are democratic or republican. The important variables in the pols-month data set are **`r name_poldata`**. The *dimensions* of the pols-month data is **`r dim_poldata`**. The *range of years* in the pols-month data is from **`r range_year`**. 
 
 The *“snp”* data set contains data that is related to Standard & Poor’s stock market index (S&P), often used as a representative measure of stock market as a whole. The *important variables* in the snp dataset are **`r name_stockmarket`**. The *dimensions* of the snp data is **`r dim_stockmarket`**. The *range of years* in the "snp" data is from **`r range_year_snp`**. 
 
 The *"unemployment"* data set contains data percentage of unemployment for a specific year and month. The *important variables* in the unemployment are **`r names_unemployment`**. The *dimensions* in the uneployment data set are **`r dim_unemployment`**. The *range of years* in the unemployment is from **`r range_year_unemployment`**. 
+
+
+
 
 
 ### Problem 3
@@ -238,11 +235,15 @@ babyname_data <-
          childs_first_name = str_to_sentence(childs_first_name))
 ```
 
+
+
 ### Removing duplicate rows from Baby Name data.
 ```{r removing duplicate rows}
 babyname_data <-
   babyname_data %>% distinct()
 ```
+
+
 
 ### Olivia Rank Data table 
 ```{r creating a table showing the rank popularity of the name -Olivia}
@@ -257,6 +258,8 @@ Olivia_rank <-
 knitr::kable(Olivia_rank)
 ```
 
+
+
 ### Creating Male Rank Table 
 ```{r creating Male Baby Name rank table}
 Male_rank <-
@@ -270,11 +273,15 @@ Male_rank <-
 knitr::kable(Male_rank)
 ```
 
+
+
 ### Scatterplot Data 
 ```{r Extracting a specific data from the Popular name data set and this data will be later used to create a scatterplot}
 scatterplot_data <-
   filter(babyname_data, gender == "Male", year_of_birth == "2016", ethnicity == "White Non Hispanic") 
 ```
+
+
 
 
 ### Creating Scatterplot
