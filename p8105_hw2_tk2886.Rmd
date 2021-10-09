@@ -43,6 +43,8 @@ trashwheel_data <-
   trashwheel_data %>%
   filter(!str_detect(month, "Total")) %>%
   mutate(sports_balls = as.integer(round(sports_balls, digits = 0)))
+
+trashwheel_data
 ```
 
 
@@ -63,6 +65,8 @@ precipitation18_data <-
   janitor::clean_names() %>%
   mutate(year = "2018") %>%
   drop_na()
+
+precipitation18_data
 ```
 
 
@@ -83,6 +87,8 @@ precipitation19_data <-
   janitor::clean_names() %>%
   mutate(year = "2019") %>%
   drop_na()
+
+precipitation19_data
 ```
 
 
@@ -93,7 +99,9 @@ precipitation19_data <-
 precipitation_data <-
   bind_rows(precipitation18_data, precipitation19_data) %>%
   mutate(month = month.name[month]) %>%
-  relocate(year, month, total) 
+  relocate(year, month, total)
+
+precipitation_data
 ```
 
 
