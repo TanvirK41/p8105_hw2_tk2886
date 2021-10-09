@@ -24,12 +24,18 @@ trashwheel_data <-
     )
 ```
 
+
+
+
 ### Cleaning Mr.Trash Wheel Data
 ```{r cleaning data}
 trashwheel_data <-
     trashwheel_data %>%
     janitor::clean_names() 
 ```
+
+
+
 
 ### Using filter, mutate, as.integer to format and get specific data from Mr.Trash Wheel data
 ```{r getting specific data from Mr.Trash Wheel data by using filter, mutate, as.integer}
@@ -38,6 +44,9 @@ trashwheel_data <-
   filter(!str_detect(month, "Total")) %>%
   mutate(sports_balls = as.integer(round(sports_balls, digits = 0)))
 ```
+
+
+
 
 
 ### Importing 2018 Precipitation Data. 2018 Precipitation is an Excel File. 
@@ -60,6 +69,8 @@ precipitation18_data <-
   drop_na()
 ```
 
+
+
 ### Importing 2019 Precipitation Data. 2019 Precipitation is an Excel File, 
 ```{r importing 2019 Precipitation data with specific requirements}
 precipitation19_data <-
@@ -79,8 +90,10 @@ precipitation19_data <-
 ```
 
 
+
+
 ### Combining 2018 and 2019 Precipitation Data. Use bind_rows instead of r.bind. Never use r.bind. 
-```{r combining data}
+```{r combining 2018 and 2019 precipitation data}
 precipitation_data <-
   bind_rows(precipitation18_data, precipitation19_data) %>%
   mutate(month = month.name[month]) %>%
@@ -88,8 +101,10 @@ precipitation_data <-
 ```
 
 
+
+
 ### Analysis of 2018 Precipitation Data and 2019 Precipitation Data
-```{r}
+```{r storing important information for 2018 and 2019 precipitation }
 variable_p18 = precipitation18_data %>% names()
 variable_p19 = precipitation19_data %>% names()
 total_precipitation18 = precipitation18_data %>% summarise(sum(total))
@@ -108,8 +123,11 @@ After importing and cleaning the **2018 precipitation** data . The important var
 
 After importing the **2019 precipitation** data. The important variables names are **`r variable_p19`**. There are important information that may be examined. The *total rows* in precipitation data in 2019 is **`r p19_row`**. The *total columns* in precipitation data in 2018 is **`r p19_col`**. The *important variables* in the precipitation data in 2019 are **`r variable_p19`**. The *total precipitation* in 2019 was **`r total_precipitation19`**. The *median precipitation* in 2019 was **`r median_p19`**. The *mean precipitation* in 2019 was **`r mean_p19`**. 
 
+
+
+
 ### Analysis of Mr. Trash Wheel Data
-```{r}
+```{r storing important information for Mr. Trash Wheel Data}
 variable_trashwheel = trashwheel_data %>% names()
 row_trashwheel = trashwheel_data %>% nrow()
 col_trashwheel = trashwheel_data %>% ncol()
@@ -117,6 +135,8 @@ median_sportsball = trashwheel_data %>%
   filter(year == 2019) %>% summarise(median(sports_balls))
 ```
 After importing and cleaning the **Mr. Trash Wheel** data . The important variables names are **`r variable_trashwheel`**. The *total rows* in Mr.Trash Wheel data is **`r row_trashwheel`**. The *total columns* in Mr.Trash Wheel data is **`r col_trashwheel`**. The *median number of sports ball* is **`r median_sportsball`**.
+
+
 
 
 
@@ -176,7 +196,7 @@ merge_data2 <-
 ```
 
 
-### Analyze Data
+### Analysis of FiveThirtyEight Datas 
 ```{r}
 name_poldata = pol_data %>% names()
 dim_poldata = pol_data %>% dim()
@@ -219,13 +239,13 @@ babyname_data <-
 ```
 
 ### Removing duplicate rows from Baby Name data.
-```{r}
+```{r removing duplicate rows}
 babyname_data <-
   babyname_data %>% distinct()
 ```
 
 ### Olivia Rank Data table 
-```{r}
+```{r creating a table showing the rank popularity of the name -Olivia}
 Olivia_rank <- 
   filter(babyname_data, childs_first_name == "Olivia") %>%
   select(-count) %>%
