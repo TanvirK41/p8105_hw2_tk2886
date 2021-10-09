@@ -44,6 +44,9 @@ trashwheel_data
 ```
 
 
+
+
+
 #### Importing 2018 Precipitation Data. 2018 Precipitation is an Excel File
 ```{r importing 2018 Precipitation data with specific requirements}
 precipitation18_data <-
